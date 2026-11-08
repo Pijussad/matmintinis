@@ -45,13 +45,13 @@
 <script>
 var q={}; try{ new URLSearchParams(location.search).forEach(function(v,k){q[k]=v;}); }catch(e){}
 var sprint = (q.sprint==='1');
-var Tase=1, Kordus=1, Kell=40, Kokku=0, UusTase=0, running=false, streak=0, locked=false;
+var Tase=1, Kordus=1, Kell=40, Kokku=0, UusTase=0, running=false, streak=0, locked=false, oigeid=0;
 var INC=[20,60,100,140,180,220];
 var timer=null, cur={L:0,R:0,rel:'='}, tO=null,tB=null;
 
 function setTxt(id,v){var e=document.getElementById(id); if(e) e.textContent=v;}
 function roundStart(){ Kell=40; UusTase += INC[Math.min(Tase-1,INC.length-1)]; updateStats(); }
-function updateStats(){ setTxt('txtKell',Kell); setTxt('txtKokku',Kokku); setTxt('txtTase',Tase); if(Kordus===6&&Tase>=6) setTxt('txtTeade','Paskutinės 40 sekundžių!'); else setTxt('txtTeade','Jums reikia surinkti '+(UusTase||20)+' tšk.'); }
+function updateStats(){ setTxt('txtKell',Kell); setTxt('txtKokku',Kokku); setTxt('txtTase',Tase); if(sprint){ if(Kell<=40) setTxt('txtTeade','Paskutinės 40 sekundžių!'); else setTxt('txtTeade','Sprintas'); } else if(Kordus===6&&Tase>=6) setTxt('txtTeade','Paskutinės 40 sekundžių!'); else setTxt('txtTeade','Jums reikia surinkti '+(UusTase||20)+' tšk.'); }
 function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
 function expr(){
   /* Palyginimas – originally only addition and subtraction */
@@ -71,8 +71,8 @@ function answer(sym){
   if(!running||locked) return; locked=true;
   document.getElementById('relbox').textContent=sym;
   setTimeout(function(){
-    if(sym===cur.rel){ streak++; var p=3+Tase*3; Kokku+=p; if(streak%5===0) show(owl,true); }
-    else { Kokku-=5; streak=0; show(bear,false); document.getElementById('relbox').textContent=cur.rel; }
+    if(sym===cur.rel){ streak++; var p=3+Tase*3; Kokku+=p; if(streak%5===0) show(owl,true); if(sprint){ oigeid++; if(Tase<6 && oigeid>=4){ Tase++; oigeid=0; } } }
+    else { Kokku-=5; streak=0; show(bear,false); document.getElementById('relbox').textContent=cur.rel; if(sprint){ if(Tase>1) Tase--; oigeid=0; } }
     updateStats();
     setTimeout(function(){ if(running) nextProblem(); }, sym===cur.rel?150:350);
   },120);
@@ -89,7 +89,7 @@ function endGame(){
 function saveResult(name,pts,lvl){ try{ var a=JSON.parse(localStorage.getItem('mm_results')||'[]'); var d=new Date(); function z(n){return (n<10?'0':'')+n;} var ds=d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())+' '+z(d.getHours())+':'+z(d.getMinutes()); a.push({date:ds,name:name,pts:pts,lvl:lvl}); localStorage.setItem('mm_results',JSON.stringify(a.slice(-300))); }catch(e){} }
 function tick(){
   if(!running) return;
-  Kell--; setTxt('txtKell', Math.max(0,Kell));
+  Kell--; updateStats();
   if(Kell<=0){
     if(sprint){ endGame(); return; }
     if(Kokku>=UusTase){ UusTase=Kokku; Tase++; } else { UusTase=Math.max(0,Kokku-10); }
@@ -99,7 +99,7 @@ function tick(){
   }
 }
 function start(){
-  running=true; Tase=1; Kordus=1; Kell=sprint?200:40; Kokku=0; UusTase=0; streak=0;
+  running=true; Tase=1; Kordus=1; Kell=sprint?200:40; Kokku=0; UusTase=0; streak=0; oigeid=0;
   if(sprint){ UusTase=0; setTxt('txtTeade','Sprintas'); } else roundStart();
   updateStats(); nextProblem(); clearInterval(timer); timer=setInterval(tick,1000);
 }
@@ -142,5 +142,6 @@ start();
   window.addEventListener('beforeunload', capture);
 })();
 </script>
+<script src="assets/lang.js"></script>
 </body>
 </html>
