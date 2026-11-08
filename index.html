@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<title>Lefo | Lefo</title>
+<style>
+  html,body{margin:0;padding:0;background:#FFFFFF;font-family:Arial,Helvetica,sans-serif;color:#000}
+  a{text-decoration:none;color:#000}
+  .top{width:100%;border-collapse:collapse}
+  .top td{vertical-align:middle}
+  .logo{height:65px;width:271px;border:0;display:block}
+  .tev{font-family:"Times New Roman",Georgia,serif;font-weight:bold;color:#b8860b;
+       font-size:52px;letter-spacing:2px;line-height:1;text-shadow:1px 1px 0 #8a6508}
+  .diamond{display:inline-block;width:40px;height:56px;background:#2f4a9a;transform:rotate(45deg);
+           border:4px solid #cfd8ee;vertical-align:middle;margin:0 14px 0 26px}
+  .flags{font-size:10px;text-align:right;line-height:1.35}
+  .flags img{border:1px solid #000;height:11px;margin-left:2px;vertical-align:middle}
+  .acct{font-size:12px;color:#000;text-align:right;margin-top:4px}
+  .acct .lo{color:#000;border-bottom:1px solid #000}
+  /* red menu */
+  .redbar{background:#ff0000}
+  .redbar table{width:100%;border-collapse:collapse}
+  .redbar td{color:#fff;font-size:12px;font-weight:bold;padding:5px 10px;text-align:center;white-space:nowrap}
+  .redbar a{color:#fff}
+  .redbar .sep{color:#fff;width:1%}
+  .redbar input[type=text]{font-size:11px;padding:1px 2px;width:130px}
+  .redbar input[type=submit]{font-size:11px;font-weight:bold;color:#fff;background:#ff0000;border:1px solid #fff;padding:1px 6px}
+  .orange{height:5px;background:#FF6600}
+  /* tab bar */
+  .tabbar{background:#7f7f7f}
+  .tabbar table{border-collapse:collapse}
+  .tabbar td{font-size:12px;font-weight:bold;padding:4px 14px;border-right:1px solid #9a9a9a}
+  .tabbar a{color:#111}
+  .tabbar td.active{background:#007a00}
+  .tabbar td.active a{color:#fff}
+  .tabbar td.varz a{color:#111}
+  /* body layout */
+  .main{width:100%;border-collapse:collapse}
+  .main td.side{width:170px;vertical-align:top;padding:16px 10px;
+      background:linear-gradient(90deg,#fff 0,#fff 90%,#eee 100%)}
+  .side .it{font-size:12px;font-weight:bold;color:#000;margin:0 0 10px 0}
+  .main td.content{vertical-align:top;padding:0 14px 30px 10px}
+  .crumb{font-size:12px;color:#555;margin:2px 0 8px}
+  .mtitle{display:flex;align-items:center;gap:10px;margin:6px 0 2px}
+  .euf{width:34px;height:22px;background:#003399;position:relative;border:1px solid #001a4d;display:inline-block}
+  .euf:before{content:"★";color:#ffcc00;position:absolute;left:9px;top:2px;font-size:12px;line-height:1}
+  .mname{font-family:"Times New Roman",Georgia,serif;font-weight:bold;color:#2e7d32;font-size:30px;letter-spacing:1px}
+  .excite{color:#8b0000;font-size:15px;margin:0 0 18px 44px;font-style:italic}
+  .cols{display:flex;gap:22px;align-items:flex-start}
+  .box{border:1px solid #999;background:#fff}
+  .box h3{margin:0;padding:12px 10px;font-size:15px;text-align:center;border-bottom:1px solid #999;font-weight:bold}
+  .box table{border-collapse:collapse;width:100%}
+  .box td{padding:6px 12px;font-size:14px;white-space:nowrap;vertical-align:top}
+  .box td.name{font-weight:bold}
+  .box td.links{text-align:right}
+  .box td.links a{color:#8b0000;font-size:12px;margin-left:12px}
+  .box td.links a:hover{text-decoration:underline}
+  .results{flex:0 0 170px;border:1px solid #999;padding:18px 12px;text-align:center}
+  .results a{color:#8b0000;font-weight:bold;font-size:15px}
+  .note{font-size:11px;color:#666;margin-top:14px}
+  .dis{color:#999;font-size:12px;margin-left:12px}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<table class="top">
+  <tr>
+    <td style="white-space:nowrap">
+      <img class="logo" src="assets/img/miksike_logo.jpg" alt="miksike.lt">
+    </td>
+    <td style="white-space:nowrap;padding-left:10px">
+      <span class="diamond"></span><span class="tev">T&#274;V</span>
+    </td>
+    <td style="width:100%"></td>
+    <td style="text-align:right;white-space:nowrap;padding-right:8px">
+      <div class="flags">
+        <a href="#" title="miksike.lt"><img src="assets/img/topframe/lithuania.gif"></a><a href="#" title="miksike.ee"><img src="assets/img/topframe/eesti.gif"></a><a href="#" title="miksike.lv"><img src="assets/img/topframe/latvia.gif"></a><br>
+        <a href="#" title="sl"><img src="assets/img/topframe/slovenia.gif"></a><a href="#" title="ru"><img src="assets/img/topframe/russianflag.gif"></a><a href="#" title="en"><img src="assets/img/topframe/england.gif"></a>
+      </div>
+      <div class="acct">Svečias</div>
+    </td>
+  </tr>
+</table>
+
+<!-- ================= RED MENU ================= -->
+<div class="redbar">
+  <table>
+    <tr>
+      <td><a href="#">Prad&#382;ios tinklapis</a></td><td class="sep">/</td>
+      <td><a href="#">E. darbo lak&#353;tai</a></td><td class="sep">/</td>
+      <td><a href="#">Mano e. darbo lak&#353;tai</a></td><td class="sep">/</td>
+      <td><a href="#">Paslaugos</a></td><td class="sep">/</td>
+      <td><a href="#">Kontaktai</a></td><td class="sep">/</td>
+      <td><a href="#">Nuostatos</a></td><td class="sep">/</td>
+      <td style="text-align:right;width:1%">
+        <input type="text" placeholder="">&nbsp;<input type="submit" value="Paie&#353;ka">
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="orange"></div>
+
+<!-- ================= TAB BAR ================= -->
+<div class="tabbar">
+  <table>
+    <tr>
+      <td><a href="#">Prad&#382;ia</a></td>
+      <td><a href="#">Taisykl&#279;s</a></td>
+      <td><a href="#">Statistika</a></td>
+      <td class="active"><a href="index.html">Treniruot&#279;s laukas</a></td>
+      <td><a href="#">Treniruo&#269;i&#371; rezultatai</a></td>
+      <td class="varz"><a href="#">*VAR&#381;YBOS*</a></td>
+    </tr>
+  </table>
+</div>
+
+<!-- ================= BODY ================= -->
+<table class="main">
+  <tr>
+    <td class="side">
+      <div class="it"><a href="#">E. darbo lak&#353;tai</a></div>
+      <div class="it"><a href="#">Paie&#353;ka</a></div>
+    </td>
+    <td class="content">
+      <div class="crumb">&nbsp;</div>
+      <div class="mtitle"><span class="euf"></span><span class="mname">MATMINTINIS</span></div>
+      <div class="excite">eXcitement projektas</div>
+
+      <div class="cols">
+        <!-- natural numbers -->
+        <div class="box" style="flex:1 1 auto">
+          <h3>Pratybos su nat&#363;raliais skai&#269;iais</h3>
+          <table>
+            <tr><td class="name">Sud&#279;tis</td><td class="links"><a href="game.html?valik=1">Normaliai</a><a href="game.html?valik=1&amp;sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Atimtis</td><td class="links"><a href="game.html?valik=2">Normaliai</a><a href="game.html?valik=2&amp;sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Sud&#279;tis ir atimtis</td><td class="links"><a href="game.html?valik=3">Normaliai</a><a href="game.html?valik=3&amp;sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Palyginimas</td><td class="links"><a href="cmp.html">Normaliai</a><a href="cmp.html?sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Reik&#353;mi&#371; &#303;statymas</td><td class="links"><a href="fill.html">Normaliai</a><a href="fill.html?sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Daugyba</td><td class="links"><a href="game.html?valik=4">Normaliai</a><a href="game.html?valik=4&amp;sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Dalyba</td><td class="links"><a href="game.html?valik=5">Normaliai</a><a href="game.html?valik=5&amp;sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Daugyba ir dalyba</td><td class="links"><a href="game.html?valik=6">Normaliai</a><a href="game.html?valik=6&amp;sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Visi veiksmai</td><td class="links"><a href="game.html?valik=7">Normaliai</a><a href="game.html?valik=7&amp;sprint=1">Sprintas</a></td></tr>
+          </table>
+        </div>
+
+        <!-- integers -->
+        <div class="box" style="flex:1 1 auto">
+          <h3>Pratybos su sveikaisiais skai&#269;iais</h3>
+          <table>
+            <tr><td class="name">Sud&#279;tis</td><td class="links"><a href="game_int.html?valik=1">Normaliai</a><a href="game_int.html?valik=1&amp;sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Atimtis</td><td class="links"><a href="game_int.html?valik=2">Normaliai</a><a href="game_int.html?valik=2&amp;sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Sud&#279;tis ir atimtis</td><td class="links"><a href="game_int.html?valik=3">Normaliai</a><a href="game_int.html?valik=3&amp;sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Daugyba</td><td class="links"><a href="game_int.html?valik=4">Normaliai</a><a href="game_int.html?valik=4&amp;sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Dalyba</td><td class="links"><a href="game_int.html?valik=5">Normaliai</a><a href="game_int.html?valik=5&amp;sprint=1">Sprintas</a></td></tr>
+            <tr><td class="name">Daugyba ir dalyba</td><td class="links"><a href="game_int.html?valik=6">Normaliai</a><a href="game_int.html?valik=6&amp;sprint=1">Sprintas</a></td></tr>
+          </table>
+        </div>
+
+        <!-- results -->
+        <div class="results">
+          <a href="results.html">Treniruo&#269;i&#371; rezultatai</a>
+        </div>
+      </div>
+
+      <div class="note">Miksike / Lefo &middot; originali Matmintinio (Pranglimine) programin&#279; &#303;ranga, atkurta i&#353; interneto archyvo. Prisijungimas praleistas &mdash; &#382;aid&#382;iama kaip sve&#269;ias.</div>
+    </td>
+  </tr>
+</table>
+
+<script>
+function soon(){}
+</script>
+</body>
+</html>

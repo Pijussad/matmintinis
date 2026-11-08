@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<title>Palyginimas</title>
+<style>
+  html,body{margin:0;padding:0;background:#40C060;font-family:Arial;color:#004000}
+  #trenhdr{position:absolute;left:6px;top:4px;color:#E00000;font-weight:bold;font-size:16px}
+  .wrap{margin-left:110px;margin-top:36px}
+  .anupp{font-size:15px;background:#E00000;color:#FFF;border:1px solid #FFF;font-weight:bold;padding:2px 8px;cursor:pointer}
+  #ylrida{font-size:15px;font-weight:bold;color:#004000;margin-bottom:10px}
+  .stats{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px;font-size:15px;font-weight:bold;color:#004000}
+  .skast{font-family:"Courier New",monospace;font-weight:bold;font-size:24px;background:#308040;color:#FFF;border:1px solid #FFF;padding:1px 10px;min-width:70px;text-align:right}
+  #txtTeade{font-size:14px;font-weight:bold;color:#004000;margin-left:6px}
+  .prob{font-family:"Courier New",monospace;font-weight:bold;font-size:40px;color:#004000;margin:6px 0 20px;letter-spacing:2px;min-height:54px;white-space:nowrap}
+  .relbox{display:inline-block;min-width:56px;text-align:center;border-bottom:4px solid #004000;color:#004000}
+  .cmpbtns{display:flex;gap:0}
+  .cmpbtns button{font-family:"Courier New",monospace;font-weight:bold;font-size:34px;color:#FFF;background:#609770;border:1px solid #FFF;width:80px;height:66px;cursor:pointer;margin-right:-1px}
+  .cmpbtns button:hover{background:#508760}
+  .cmpbtns button:active{background:#407750}
+  .msct{position:fixed;right:60px;top:150px;height:200px;opacity:0;pointer-events:none;
+        transition:opacity .25s ease, transform .35s cubic-bezier(.2,1.4,.4,1);transform:translateY(16px) scale(.92);z-index:50}
+  .msct.show{opacity:1;transform:translateY(0) scale(1)}
+</style>
+</head>
+<body>
+<div id="trenhdr">Treniruotės laukas</div>
+<div class="wrap">
+  <div id="ylrida"><span id="player">Svečias - 13.klasė</span> &nbsp;<input type="button" class="anupp" value="Baigti" onclick="endGame()"></div>
+  <div class="stats">
+    <span>Laikas:</span><span class="skast" id="txtKell">40</span>
+    <span>Taškai:</span><span class="skast" id="txtKokku"></span>
+    <span>Lygis:</span><span class="skast" id="txtTase" style="min-width:40px">1</span>
+    <span id="txtTeade">Jums reikia surinkti 20 tšk.</span>
+  </div>
+  <div class="prob" id="prob"></div>
+  <div class="cmpbtns">
+    <button onclick="answer('<')">&lt;</button>
+    <button onclick="answer('=')">=</button>
+    <button onclick="answer('>')">&gt;</button>
+  </div>
+</div>
+<img id="mowl" class="msct" src="assets/mascots/owl.png">
+<img id="mbear" class="msct" src="assets/mascots/bear.png">
+<script>
+var q={}; try{ new URLSearchParams(location.search).forEach(function(v,k){q[k]=v;}); }catch(e){}
+var sprint = (q.sprint==='1');
+var Tase=1, Kordus=1, Kell=40, Kokku=0, UusTase=0, running=false, streak=0, locked=false;
+var INC=[20,60,100,140,180,220];
+var timer=null, cur={L:0,R:0,rel:'='}, tO=null,tB=null;
+
+function setTxt(id,v){var e=document.getElementById(id); if(e) e.textContent=v;}
+function roundStart(){ Kell=40; UusTase += INC[Math.min(Tase-1,INC.length-1)]; updateStats(); }
+function updateStats(){ setTxt('txtKell',Kell); setTxt('txtKokku',Kokku); setTxt('txtTase',Tase); if(Kordus===6&&Tase>=6) setTxt('txtTeade','Paskutinės 40 sekundžių!'); else setTxt('txtTeade','Jums reikia surinkti '+(UusTase||20)+' tšk.'); }
+function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function expr(){
+  var ops=['+','-','x',':']; var op=ops[Math.floor(Math.random()*4)];
+  var max=[9,20,50,100,500,1000][Math.min(Tase-1,5)];
+  if(op==='+'){var a=rand(1,max),b=rand(1,max);return {s:a+' + '+b,v:a+b};}
+  if(op==='-'){var a=rand(1,max),b=rand(1,a);return {s:a+' − '+b,v:a-b};}
+  if(op==='x'){var m=Math.min(12,3+Tase*2);var x=rand(1,m),y=rand(1,m);return {s:x+' × '+y,v:x*y};}
+  var d=rand(2,Math.min(12,3+Tase*2)), qq=rand(1,Math.min(12,3+Tase*2));return {s:(d*qq)+' : '+d,v:qq};
+}
+function nextProblem(){
+  var L=expr(), R=expr();
+  cur={L:L.v,R:R.v,rel: L.v<R.v?'<':(L.v>R.v?'>':'=')};
+  document.getElementById('prob').innerHTML=L.s+' <span class="relbox" id="relbox">&nbsp;</span> '+R.s;
+  locked=false;
+}
+function answer(sym){
+  if(!running||locked) return; locked=true;
+  document.getElementById('relbox').textContent=sym;
+  setTimeout(function(){
+    if(sym===cur.rel){ streak++; var p=3+Tase*3; Kokku+=p; if(streak%5===0) show(owl,true); }
+    else { Kokku-=5; streak=0; show(bear,false); document.getElementById('relbox').textContent=cur.rel; }
+    updateStats();
+    setTimeout(function(){ if(running) nextProblem(); }, sym===cur.rel?150:350);
+  },120);
+}
+function show(el,isOwl){ el.classList.add('show'); clearTimeout(isOwl?tO:tB); if(isOwl) tO=setTimeout(function(){el.classList.remove('show');},4000); else tB=setTimeout(function(){el.classList.remove('show');},3000); }
+var owl=document.getElementById('mowl'), bear=document.getElementById('mbear');
+function endGame(){
+  if(!running){ location.href='index.html'; return; }
+  running=false; clearInterval(timer);
+  try{ saveResult('Palyginimas'+((location.pathname.indexOf('int')>=0)?' (sveikieji)':' (natūralūs)'), Kokku, Tase); }catch(e){}
+  alert('Rezultatas: '+Kokku+' taškų\nPasiektas lygis: '+Tase+'\n\nAčiū už žaidimą!');
+  location.href='index.html';
+}
+function saveResult(name,pts,lvl){ try{ var a=JSON.parse(localStorage.getItem('mm_results')||'[]'); var d=new Date(); function z(n){return (n<10?'0':'')+n;} var ds=d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())+' '+z(d.getHours())+':'+z(d.getMinutes()); a.push({date:ds,name:name,pts:pts,lvl:lvl}); localStorage.setItem('mm_results',JSON.stringify(a.slice(-300))); }catch(e){} }
+function tick(){
+  if(!running) return;
+  Kell--; setTxt('txtKell', Math.max(0,Kell));
+  if(Kell<=0){
+    if(sprint){ endGame(); return; }
+    if(Kokku>=UusTase){ UusTase=Kokku; Tase++; } else { UusTase=Math.max(0,Kokku-10); }
+    Kordus++;
+    if(Kordus>6||Tase>6){ endGame(); return; }
+    roundStart();
+  }
+}
+function start(){
+  running=true; Tase=1; Kordus=1; Kell=sprint?200:40; Kokku=0; UusTase=0; streak=0;
+  if(sprint){ UusTase=0; setTxt('txtTeade','Sprintas'); } else roundStart();
+  updateStats(); nextProblem(); clearInterval(timer); timer=setInterval(tick,1000);
+}
+start();
+</script>
+
+<script>
+/* --- live, per-session result capture (upsert) --- */
+(function(){
+  window.__sid = window.__sid || (Date.now()+'-'+Math.random().toString(36).slice(2));
+  function nowStr(){var d=new Date();function z(n){return(n<10?'0':'')+n;}return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate())+' '+z(d.getHours())+':'+z(d.getMinutes());}
+  window.saveResult=function(name,pts,lvl){
+    try{
+      var a=JSON.parse(localStorage.getItem('mm_results')||'[]'); var id=window.__sid, found=false;
+      for(var i=0;i<a.length;i++){ if(a[i].sid===id){ a[i].pts=pts; a[i].lvl=lvl; a[i].date=nowStr(); a[i].name=name; found=true; break; } }
+      if(!found) a.push({sid:id,date:nowStr(),name:name,pts:pts,lvl:lvl});
+      localStorage.setItem('mm_results',JSON.stringify(a.slice(-300)));
+    }catch(e){}
+  };
+  function nameOf(){
+    var q={}; try{ new URLSearchParams(location.search).forEach(function(v,k){q[k]=v;}); }catch(e){}
+    if(location.pathname.indexOf('cmp')>=0) return 'Palyginimas (natūralūs)';
+    if(location.pathname.indexOf('fill')>=0) return 'Reikšmių įstatymas (natūralūs)';
+    var names={1:'Sudėtis',2:'Atimtis',3:'Sudėtis ir atimtis',4:'Daugyba',5:'Dalyba',6:'Daugyba ir dalyba',7:'Visi veiksmai'};
+    return (names[q.valik]||'Pratimas')+((location.pathname.indexOf('int')>=0)?' (sveikieji)':' (natūralūs)');
+  }
+  function started(){
+    if(typeof running!=='undefined') return !!running;
+    if(typeof Alus!=='undefined') return Alus>=2;
+    return true;
+  }
+  function capture(){
+    if(!started()) return;
+    try{
+      if(typeof UKokku!=='undefined') window.saveResult(nameOf(), UKokku, Tase);
+      else if(typeof Kokku!=='undefined') window.saveResult(nameOf(), Kokku, Tase);
+    }catch(e){}
+  }
+  setInterval(capture, 2000);
+  window.addEventListener('beforeunload', capture);
+})();
+</script>
+</body>
+</html>

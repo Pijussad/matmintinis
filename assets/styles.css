@@ -1,0 +1,116 @@
+/*.heading {font-family: arial; font-size: 14px; font-weight: bold; color: #000000;}*/
+.subheading, .subheading A {font-family: arial; font-size: 12px; font-weight: bold; color: #000000; text-decoration: none;}
+
+.txt {font-family: tahoma, arial; font-size: 11px; color: black; font-weight: normal; text-decoration: none; text-align: justify }
+.txtna {font-family: tahoma, arial; font-size: 11px; color: black; font-weight: normal; text-decoration: none}
+
+.boldtxt {font-family: arial; font-size: 12px; color: black; font-weight: bold;}
+.boldsmall {font-family: arial; font-size: 11px; color: black; font-weight: bold;}
+span.bold {font-weight: bold ;}
+
+TD {font-family: tahoma,arial;font-size: 11px;}
+
+body.eci TH { font-family: tahoma,arial; font-size: 12px; }
+
+body.eci table.view th { background-color: #F0FFFA; padding: 2px; padding-left: 4px; padding-right: 4px; }
+body.eci table.view td { padding: 2px; padding-left: 4px; padding-right: 4px; }
+
+body.eci table.view { background-color: #E5F0E5; }
+body.eci table.team-info td.key { font-weight: bold; }
+body.eci table.team-info td { font-size: 12px; }
+
+.txblue A {font-family: tahoma,arial;font-size: 12px; font-weight: normal; color: #3333AA; text-decoration: none;}
+.txblue {font-family: tahoma,arial;font-size: 12px; font-weight: normal; color: #3333AA; text-decoration: none;}
+.txdblue {font-family: tahoma,arial;font-size: 12px; font-weight: bold; color: #333366; text-decoration: none;}
+.txnormal {font-family: tahoma,arial;font-size: 12px; font-weight: normal; color: #000000; text-decoration: none;}
+
+
+.dropdownbox {font-size: 10px;text-decoration: none}
+
+.standardbody {font-family: tahoma,arial; font-size: 12px;text-decoration: none}
+
+.blue_right, .blue A {font-family: arial; font-size: 11px; font-weight: normal; color: #FFFFFF; text-decoration: none;}
+.blue_right, .blue {font-family: arial; font-size: 11px; font-weight: normal; color: #FFFFFF; text-decoration: none;}
+
+.tmenu A {font-family: arial; font-size: 12px; font-weight: bold; color: #555555; text-decoration: none;}
+.tmenu {font-family: arial; font-size: 12px; font-weight: bold; color: #555555; text-decoration: none;}
+
+.vmenu A {font-family: arial; font-size: 11px; font-weight: bold; color: #111111; text-decoration: none;}
+.vmenu {font-family: arial; font-size: 11px; font-weight: bold; color: #111111; text-decoration: none;}
+
+.loginform {font-family: arial; font-size: 11px; font-weight: bold; color: #000000; text-decoration: none;}
+
+.lmenu A {font-family: arial; font-size: 12px; font-weight: bold; color: #555555; text-decoration: none;}
+.lmenu {font-family: arial; font-size: 12px; font-weight: bold; color: #555555; text-decoration: none;}
+
+.lmenu3 A {font-family: comic sans ms,arial,verdana,tahoma; font-size: 12px; font-weight: bold; color: #555555; text-decoration: none;}
+.lmenu3 {font-family: comic sans ms,arial,verdana,tahoma; font-size: 12px; font-weight: bold; color: #555555; text-decoration: none;}
+.lmenu3 A:hover {font-family: comic sans ms,arial,verdana,tahoma; font-size: 12px; font-weight: bold; color: #555555; text-decoration: underline;}
+
+.lefolink { font-family: tahoma, arial; color: #BD0C29;}
+
+.red a:link, .red a:visited {font-family: arial; font-size: 11px; font-weight: bold; color: #FFFFFF; text-decoration: none;}
+.red a:hover, .red {font-family: arial; font-size: 11px; font-weight: bold; color: #FFFFFF; text-decoration: none;}
+
+.red_right, .red_right A {font-family: arial; font-size: 11px; font-weight: normal; color: #FFFFFF; text-decoration: none;}
+
+.grey A {font-family: arial; font-size: 11px; font-weight: bold; color: #FFFFFF; text-decoration: none;}
+.grey a:hover, .grey {font-family: arial; font-size: 11px; font-weight: bold; color: #FFFFFF; text-decoration: none;}
+
+.link a:link, .link a:visited {font-family: arial; font-size: 11px; font-weight: bold; color: #020C6B; text-decoration: none;}
+.link a:hover {font-family: arial; font-size: 11px; font-weight: bold; color: #020C6B; text-decoration: underline;}
+
+.contact {font-family: arial; font-size: 9px; color: black;}
+.contact a:link, .contact a:visited {color: #FF5300; text-decoration: none;}
+
+.submenu A, submenu {font-family: arial; font-size: 10px; font-weight: normal; color: #FFFFFF; text-decoration: none;}
+
+
+.topmenu, .topmenu A {padding-right: 5px; font-family: arial; font-size: 11px; color: #000000; text-decoration: none; white-space: nowrap;}
+.topmenu a:hover {color: black}
+
+.contactbox {padding-left: 5px; padding-right: 10px; font-family: arial; font-size: 11px; color: black;}
+.contactbox a:link, .contactbox a:visited {color: #FF5300; text-decoration: none;}
+
+.italic {font-family: tahoma, arial; font-size: 11px; color: black; font-weight: normal; text-decoration: none; font-style: italic;}
+
+.vcmsContent table { border-collapse: collapse; border-spacing: 0px; border: 0px solid silver; font-size: 14px;}
+.vcmsContent td { border: 0px solid silver; font-family: tahoma, arial; font-size: 14px;}
+.vcmsContent { font-family: tahoma, arial; font-size: 12px}
+.vcmsContent .Yellow { font-family: tahoma, arial; color: #FFFD10;}
+.vcmsContent .Blue { font-family: tahoma, arial; color: #0000FF;}
+.vcmsContent .Red { font-family: tahoma, arial; color: #FF0000;}
+.vcmsContent .link { font-family: tahoma, arial; color: #BD0C29;}
+.vcmsContent .Green { font-family: tahoma, arial; color: #00AA00;}
+.vcmsContent .Huge { font-family: tahoma, arial; font-size: 24px}
+.vcmsContent .Big { font-family: tahoma, arial; font-size: 16px}
+.vcmsContent .Normal { font-family: tahoma, arial; font-size: 14px}
+.vcmsContent .Small { font-family: tahoma, arial; font-size: 10px}
+.vcmsContent .Tiny { font-family: tahoma, arial; font-size: 6px}
+.vcmsContent a { font-family: tahoma, arial; color: #BD0C29;}
+
+.vcmsContent .menutd { background-color: #555555; text-align: center; vertical-align: middle;}
+.vcmsContent .menua { font-size:12px; color:#FFFFFF; text-decoration: none}
+
+
+
+/*
+     FILE ARCHIVED ON 08:16:09 Mar 24, 2012 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 16:02:17 Nov 07, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.607
+  exclusion.robots: 0.052
+  exclusion.robots.policy: 0.037
+  esindex: 0.009
+  cdx.remote: 25.135
+  LoadShardBlock: 638.017 (3)
+  PetaboxLoader3.datanode: 1035.203 (4)
+  PetaboxLoader3.resolve: 1367.37 (2)
+  load_resource: 1980.69
+*/
