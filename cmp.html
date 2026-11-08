@@ -54,12 +54,12 @@ function roundStart(){ Kell=40; UusTase += INC[Math.min(Tase-1,INC.length-1)]; u
 function updateStats(){ setTxt('txtKell',Kell); setTxt('txtKokku',Kokku); setTxt('txtTase',Tase); if(Kordus===6&&Tase>=6) setTxt('txtTeade','Paskutinės 40 sekundžių!'); else setTxt('txtTeade','Jums reikia surinkti '+(UusTase||20)+' tšk.'); }
 function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
 function expr(){
-  var ops=['+','-','x',':']; var op=ops[Math.floor(Math.random()*4)];
+  /* Palyginimas – originally only addition and subtraction */
+  var plus=Math.random()<0.5;
   var max=[9,20,50,100,500,1000][Math.min(Tase-1,5)];
-  if(op==='+'){var a=rand(1,max),b=rand(1,max);return {s:a+' + '+b,v:a+b};}
-  if(op==='-'){var a=rand(1,max),b=rand(1,a);return {s:a+' − '+b,v:a-b};}
-  if(op==='x'){var m=Math.min(12,3+Tase*2);var x=rand(1,m),y=rand(1,m);return {s:x+' × '+y,v:x*y};}
-  var d=rand(2,Math.min(12,3+Tase*2)), qq=rand(1,Math.min(12,3+Tase*2));return {s:(d*qq)+' : '+d,v:qq};
+  var a,b;
+  if(plus){ a=rand(1,max); b=rand(1,max); return {s:a+' + '+b, v:a+b}; }
+  a=rand(1,max); b=rand(1,a); return {s:a+' − '+b, v:a-b};
 }
 function nextProblem(){
   var L=expr(), R=expr();
